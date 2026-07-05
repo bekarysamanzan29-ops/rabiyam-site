@@ -1,147 +1,50 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Для Рабиюши 💝</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Рабиюши 💝</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #fff0f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .glass-card { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 90%; }
+        .photo-box img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
+        h1 { color: #d63384; }
+        .buttons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        button { padding: 10px 20px; border: none; border-radius: 15px; cursor: pointer; font-weight: bold; }
+        #yesBtn { background: #ff4d6d; color: white; }
+        #noBtn { background: #ccc; color: #333; position: absolute; }
+    </style>
 </head>
-
 <body>
 
-<div id="loading-screen">
-
-<div class="loader-card">
-
-<div class="heart-loader">
-💝
+<div class="glass-card" id="mainPage">
+    <div class="photo-box">
+        <!-- Твои файлы, которые уже есть в репозитории -->
+        <img src="1.jpg" alt="Мы">
+    </div>
+    <h1>Милая Рабиюша 💝</h1>
+    <h2>Абдрахимова Рабиям Пархатовна</h2>
+    <p class="question">10 июля пойдешь ли ты со мной на свиданку-гулянку? 💘</p>
+    
+    <div class="buttons" id="btn-container" style="height: 50px;">
+        <button id="yesBtn" onclick="confettiFunction()">💝 Конечно пойду</button>
+        <button id="noBtn" onmouseover="moveNo()">Неа</button>
+    </div>
 </div>
 
-<h1>Загружается сюрприз...</h1>
+<script>
+    function confettiFunction() {
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+        alert("Ура! Тогда обсудим время! 🥰");
+    }
+    function moveNo() {
+        const btn = document.getElementById('noBtn');
+        const container = document.getElementById('btn-container');
+        btn.style.left = (Math.random() * 200 - 100) + 'px';
+        btn.style.top = (Math.random() * 100 - 50) + 'px';
+    }
+</script>
 
-<p>Для самой красивой девушки 💘</p>
-
-<div class="loading-bar">
-
-<div class="loading-progress"></div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="hearts-container"></div>
-
-<main id="mainPage" class="hidden">
-
-<section class="glass-card">
-
-<div class="photo-gallery">
-
-    <img src="1.jpg" alt="Мы вместе" class="photo first-photo">
-
-    <img src="2.jpg" alt="Мы вместе" class="photo second-photo">
-
-</div>
-
-<h1>
-
-Милая Рабиюша 💝
-
-</h1>
-
-<h2>
-
-Абдрахимова Рабиям Пархатовна
-
-</h2>
-
-<p class="question">
-
-10 июля пойдешь ли ты со мной на свиданку-гулянку? 💘
-
-</p>
-
-<div class="buttons">
-
-<button id="yesBtn">
-
-💝 Конечно пойду
-
-</button>
-
-<button id="noBtn">
-
-Неа
-
-</button>
-
-</div>
-
-<div class="cat">
-
-<img src="images/cat.gif" alt="cat">
-
-</div>
-
-</section>
-
-</main>
-
-<section id="foodPage" class="hidden">
-
-<div class="glass-card">
-
-<h1>
-
-Что будем кушать? 💝
-
-</h1>
-
-<div class="foods">
-
-<div class="food-card">
-🍣
-<h3>Суши</h3>
-</div>
-
-<div class="food-card">
-🍕
-<h3>Пицца</h3>
-</div>
-
-<div class="food-card">
-🥩
-<h3>Мясо</h3>
-</div>
-
-<div class="food-card">
-🍰
-<h3>Десерты</h3>
-</div>
-
-<div class="food-card">
-🍔
-<h3>Бургеры</h3>
-</div>
-
-<div class="food-card">
-🌮
-<h3>Что захочешь</h3>
-</div>
-
-</div>
-
-</div>
-
-</section>
+</body>
+</html>
