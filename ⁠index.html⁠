@@ -1,2 +1,98 @@
-<h1>Сайт успешно работает!</h1>
-<h1>Всё чётко! Сайт успешно запущен с ноута!!!</h1>⁠
+const maxX = containerRect.width - btnRect.width - 10;
+            const maxY = 180; // Допустимая высота прыжка вверх-вниз
+            const minScale = -60;
+
+            const randomX = Math.random() * maxX;
+            const randomY = (Math.random() * maxY) + minScale;
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            
+            // Меняем текст кнопки на смешную фразу
+            noBtn.innerText = funnyPhrases[phraseIndex];
+            phraseIndex = (phraseIndex + 1) % funnyPhrases.length;
+        }
+
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Защита от случайного нажатия на тачскрине
+            moveNoButton();
+        });
+
+        // Функция при нажатии на «Конечно пойду»
+        function acceptInvitation() {
+            // Включаем музыку при первом клике (требование браузеров)
+            if(bgMusic.paused) {
+                toggleAudio();
+            }
+
+            // Запуск салюта из конфетти
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.8 },
+                    colors: ['#ffb6c1', '#e0b0ff', '#ffffff']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.8 },
+                    colors: ['#ffb6c1', '#e0b0ff', '#ffffff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            // Переход на экран с выбором еды через секунду
+            setTimeout(() => {
+                mainScreen.classList.remove('active');
+                foodScreen.classList.add('active');
+            }, 1200);
+        }
+
+        // Выбор карточек еды
+        function selectFood(card) {
+            card.classList.toggle('selected');
+        }
+
+        // Переход на финальный экран
+        function goToFinal() {
+            foodScreen.classList.remove('active');
+            finalScreen.classList.add('active');
+            
+            // Финальный триумфальный взрыв конфетти прямо по центру экрана
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#ffb6c1', '#e0b0ff', '#ffe5ec']
+            });
+
+            // Интенсивный спавн сердечек на финал
+            for(let i=0; i<20; i++) {
+                setTimeout(createFloatingHeart, i * 100);
+            }
+        }
+
+        // Логика аудиоплеера (Вкл/Выкл)
+        function toggleAudio() {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    audioToggle.innerText = '🎵';
+                }).catch(err => console.log("Музыка ждет взаимодействия"));
+            } else {
+                bgMusic.pause();
+                audioToggle.innerText = '🔇';
+            }
+        }
+    </script>
+</body>
+</html>
